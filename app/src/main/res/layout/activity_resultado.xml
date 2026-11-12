@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/totem_success"
+    tools:context=".ResultadoActivity">
+
+    <ImageView
+        android:id="@+id/imgIcone"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/bg_circle_translucent"
+        android:contentDescription="@null"
+        android:padding="36dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txtStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0.4"
+        tools:src="@drawable/ic_check" />
+
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="0.1"
+        android:textColor="@color/white"
+        android:textSize="46sp"
+        app:layout_constraintTop_toBottomOf="@id/imgIcone"
+        app:layout_constraintBottom_toTopOf="@id/txtNome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="LIBERADO" />
+
+    <TextView
+        android:id="@+id/txtNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="32dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintTop_toBottomOf="@id/txtStatus"
+        app:layout_constraintBottom_toTopOf="@id/txtSub"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Pedro Vitor" />
+
+    <TextView
+        android:id="@+id/txtSub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="48dp"
+        android:gravity="center"
+        android:textColor="#D9FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/txtNome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Bem-vindo! Pode passar." />
+
+    <!-- Barra que esvazia nos 5 s até voltar para a tela inicial -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progresso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="1000"
+        android:progress="1000"
+        app:indicatorColor="@color/white"
+        app:trackColor="@color/totem_white_translucent"
+        app:trackCornerRadius="0dp"
+        app:trackThickness="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

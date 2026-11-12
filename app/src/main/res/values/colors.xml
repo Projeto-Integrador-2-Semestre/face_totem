@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta do totem -->
+    <color name="totem_bg_top">#EEF6FF</color>
+    <color name="totem_bg_bottom">#A8D8FF</color>
+    <color name="totem_primary">#0B3D91</color>
+    <color name="totem_primary_dark">#072A66</color>
+    <color name="totem_text">#10263F</color>
+    <color name="totem_text_secondary">#4A6079</color>
+
+    <color name="totem_success">#2E7D32</color>
+    <color name="totem_success_dark">#1B5E20</color>
+    <color name="totem_danger">#C62828</color>
+    <color name="totem_danger_dark">#8E0000</color>
+
+    <color name="totem_scrim">#73000000</color>
+    <color name="totem_pill">#99000000</color>
+    <color name="totem_white_translucent">#33FFFFFF</color>
+</resources>

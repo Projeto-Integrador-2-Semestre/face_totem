@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imgHero"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:background="@drawable/bg_circle_primary"
+        android:contentDescription="@null"
+        android:elevation="6dp"
+        android:padding="30dp"
+        android:src="@drawable/ic_person"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txtTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0.42" />
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/titulo_inicial"
+        android:textColor="@color/totem_text"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/imgHero"
+        app:layout_constraintBottom_toTopOf="@id/txtSubtitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtSubtitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="48dp"
+        android:gravity="center"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/subtitulo_inicial"
+        android:textColor="@color/totem_text_secondary"
+        android:textSize="17sp"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtToque"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.08"
+        android:text="@string/toque_iniciar"
+        android:textAllCaps="true"
+        android:textColor="@color/totem_primary"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/btnReconhecer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnReconhecer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
+        android:contentDescription="@string/desc_btn_camera"
+        android:src="@drawable/ic_camera"
+        app:backgroundTint="@color/totem_primary"
+        app:elevation="10dp"
+        app:fabCustomSize="92dp"
+        app:maxImageSize="42dp"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Só aparece quando a API está fora do ar -->
+    <LinearLayout
+        android:id="@+id/layoutStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible">
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_dot" />
+
+        <TextView
+            android:id="@+id/txtStatusApi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/totem_danger"
+            android:textSize="14sp"
+            tools:text="Sistema indisponível" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

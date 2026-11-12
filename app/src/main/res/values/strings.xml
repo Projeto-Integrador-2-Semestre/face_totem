@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">FaceTotem</string>
+    <string name="marca">Controle de acesso</string>
+
+    <!-- Tela inicial -->
+    <string name="titulo_inicial">Reconhecimento Facial</string>
+    <string name="subtitulo_inicial">Toque no botão e posicione o rosto em frente à câmera</string>
+    <string name="toque_iniciar">Toque para iniciar</string>
+    <string name="desc_btn_camera">Iniciar reconhecimento facial</string>
+    <string name="sistema_indisponivel">Sistema indisponível</string>
+    <string name="sem_permissao_rede">Sem permissão de rede local</string>
+
+    <!-- Tela da câmera -->
+    <string name="dica_camera">Posicione o rosto na moldura</string>
+    <string name="dica_centralize">Centralize o rosto na moldura</string>
+    <string name="api_indisponivel">Sistema indisponível, tentando de novo…</string>
+    <string name="sem_permissao_camera">Sem permissão de câmera</string>
+    <string name="erro_camera">Erro ao abrir a câmera</string>
+    <string name="tempo_esgotado">Nenhum rosto reconhecido</string>
+
+    <!-- Tela de resultado -->
+    <string name="liberado">LIBERADO</string>
+    <string name="negado">NEGADO</string>
+    <string name="liberado_sub">Bem-vindo! Pode passar.</string>
+    <string name="negado_sub">Acesso não autorizado. Procure a recepção.</string>
+
+    <!-- Configuração escondida (toque longo no título) -->
+    <string name="config_titulo">Configuração do totem</string>
+    <string name="config_url">URL da API</string>
+    <string name="config_url_hint">https://faceapi-pd4q.onrender.com/</string>
+    <string name="config_launcher">Iniciar junto com o aparelho (modo launcher)</string>
+    <string name="config_launcher_ajuda">Ao marcar, aperte Home e escolha FaceTotem como launcher padrão. Para reverter, desmarque aqui.</string>
+    <string name="salvar">Salvar</string>
+    <string name="config_salva">Configuração salva</string>
+</resources>
