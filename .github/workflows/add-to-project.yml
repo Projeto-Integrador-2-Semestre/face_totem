@@ -1,0 +1,23 @@
+name: Adicionar ao Project
+
+# Adiciona toda issue e PR nova deste repositório ao Kanban da organização.
+# O plano gratuito só permite 1 workflow "Auto-add" no Project (usado pelo face_api),
+# então os demais repositórios usam esta Action.
+# Requer o secret ADD_TO_PROJECT_PAT (token com escopo "project" e "repo").
+
+on:
+  issues:
+    types: [opened, reopened, transferred]
+  pull_request_target:
+    types: [opened, reopened, ready_for_review]
+
+permissions: {}
+
+jobs:
+  adicionar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: https://github.com/orgs/Projeto-Integrador-2-Semestre/projects/1
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
