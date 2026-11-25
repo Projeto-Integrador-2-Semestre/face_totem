@@ -19,6 +19,42 @@
         android:inputType="textUri"
         android:singleLine="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/config_url_gestao" />
+
+    <EditText
+        android:id="@+id/edtUrlGestao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/config_url_gestao_hint"
+        android:importantForAutofill="no"
+        android:inputType="textUri"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/config_catraca_id" />
+
+    <EditText
+        android:id="@+id/edtCatracaId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/config_catraca_id_hint"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/config_liberacao_ajuda"
+        android:textSize="12sp" />
+
     <CheckBox
         android:id="@+id/chkLauncher"
         android:layout_width="wrap_content"

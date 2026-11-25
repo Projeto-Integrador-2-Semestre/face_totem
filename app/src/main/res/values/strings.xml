@@ -23,11 +23,19 @@
     <string name="negado">NEGADO</string>
     <string name="liberado_sub">Bem-vindo! Pode passar.</string>
     <string name="negado_sub">Acesso não autorizado. Procure a recepção.</string>
+    <string name="acesso_liberado">ACESSO LIBERADO</string>
+    <string name="liberacao_manual">Liberação manual</string>
+    <string name="liberado_por">Liberado por %1$s. Pode passar.</string>
 
     <!-- Configuração escondida (toque longo no título) -->
     <string name="config_titulo">Configuração do totem</string>
     <string name="config_url">URL da API</string>
     <string name="config_url_hint">https://faceapi-pd4q.onrender.com/</string>
+    <string name="config_url_gestao">URL da API de gestão (liberação manual)</string>
+    <string name="config_url_gestao_hint">http://192.168.0.10:8080/</string>
+    <string name="config_catraca_id">ID da catraca deste totem</string>
+    <string name="config_catraca_id_hint">Ex.: 1</string>
+    <string name="config_liberacao_ajuda">Com os dois campos preenchidos, o totem mostra ACESSO LIBERADO quando o operador liberar esta catraca no painel web. Deixe em branco para desligar.</string>
     <string name="config_launcher">Iniciar junto com o aparelho (modo launcher)</string>
     <string name="config_launcher_ajuda">Ao marcar, aperte Home e escolha FaceTotem como launcher padrão. Para reverter, desmarque aqui.</string>
     <string name="salvar">Salvar</string>

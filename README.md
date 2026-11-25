@@ -71,6 +71,18 @@ leva perto de 1 min e estoura os timeouts do app (`ApiClient`): espere a API aco
 - Para impedir totalmente a saída do app (lock task / device owner) é preciso provisionar o
   tablet como dispositivo gerenciado; não está implementado.
 
+## Liberação manual pelo painel web
+
+O botão **Liberar Catraca** do painel web (front-end) pede a liberação de uma catraca na API Java de gestão
+(`ApiControleDeAcessoPI2`). Para o totem receber esse pedido, informe na configuração escondida:
+
+- **URL da API de gestão** – ex.: `http://192.168.0.10:8080/` (ou `http://10.0.2.2:8080/` no emulador);
+- **ID da catraca deste totem** – o `id` da catraca em `GET /catracas` (ex.: `1`).
+
+Com os dois preenchidos, as telas inicial e de câmera consultam `POST /catracas/{id}/liberacao/confirmar` a
+cada 1,5 s (`LiberacaoRemota`). Quando há uma liberação, abre a tela verde **ACESSO LIBERADO** com o motivo e o
+nome do operador. Deixe os campos em branco para desligar.
+
 ## Pendências de hardware
 
 - **Acionamento físico da catraca**: o app só mostra o resultado. O ponto para integrar está

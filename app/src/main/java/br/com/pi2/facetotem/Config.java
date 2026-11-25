@@ -15,6 +15,8 @@ public final class Config {
 
     private static final String PREFS = "face_totem";
     private static final String KEY_URL = "api_url";
+    private static final String KEY_URL_GESTAO = "api_gestao_url";
+    private static final String KEY_CATRACA_ID = "catraca_id";
 
     /**
      * API publicada no Render. Para usar a API rodando no PC, troque pela configuração escondida:
@@ -46,6 +48,46 @@ public final class Config {
             u = u + "/";
         }
         prefs(c).edit().putString(KEY_URL, u).apply();
+    }
+
+    // ---- Liberação manual pelo painel web (API Java de gestão) ----
+
+    /** URL da API Java de gestão; vazio = liberação manual desligada neste totem. */
+    public static String getUrlGestao(Context c) {
+        return prefs(c).getString(KEY_URL_GESTAO, "");
+    }
+
+    /** Salva a URL da API de gestão (vazio desliga). Mesma normalização da URL da face_api. */
+    public static void setUrlGestao(Context c, String url) {
+        String u = url == null ? "" : url.trim();
+        if (!u.isEmpty()) {
+            if (!u.startsWith("http://") && !u.startsWith("https://")) {
+                u = "http://" + u;
+            }
+            if (!u.endsWith("/")) {
+                u = u + "/";
+            }
+        }
+        prefs(c).edit().putString(KEY_URL_GESTAO, u).apply();
+    }
+
+    /** ID da catraca deste totem (o mesmo do cadastro em /catracas); 0 = não configurado. */
+    public static long getCatracaId(Context c) {
+        return prefs(c).getLong(KEY_CATRACA_ID, 0);
+    }
+
+    public static void setCatracaId(Context c, String valor) {
+        long id;
+        try {
+            id = Long.parseLong(valor == null ? "" : valor.trim());
+        } catch (NumberFormatException e) {
+            id = 0;
+        }
+        prefs(c).edit().putLong(KEY_CATRACA_ID, Math.max(0, id)).apply();
+    }
+
+    public static boolean isLiberacaoRemotaConfigurada(Context c) {
+        return !getUrlGestao(c).isEmpty() && getCatracaId(c) > 0;
     }
 
     /**
