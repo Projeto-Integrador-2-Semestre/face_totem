@@ -23,6 +23,10 @@ public class ResultadoActivity extends TotemActivity {
 
     public static final String EXTRA_AUTORIZADO = "autorizado";
     public static final String EXTRA_NOME = "nome";
+    /** Liberação manual feita pelo operador no painel web (botão "Liberar catraca"). */
+    public static final String EXTRA_MANUAL = "manual";
+    public static final String EXTRA_OPERADOR = "operador";
+    public static final String EXTRA_MOTIVO = "motivo";
 
     private static final long TEMPO_NA_TELA_MS = 5000;
 
@@ -45,7 +49,19 @@ public class ResultadoActivity extends TotemActivity {
         TextView txtSub = findViewById(R.id.txtSub);
         LinearProgressIndicator progresso = findViewById(R.id.progresso);
 
-        if (autorizado) {
+        boolean manual = getIntent().getBooleanExtra(EXTRA_MANUAL, false);
+
+        if (manual) {
+            String operador = getIntent().getStringExtra(EXTRA_OPERADOR);
+            String motivo = getIntent().getStringExtra(EXTRA_MOTIVO);
+            fundo.setBackgroundColor(ContextCompat.getColor(this, R.color.totem_success));
+            imgIcone.setImageResource(R.drawable.ic_check);
+            txtStatus.setText(R.string.acesso_liberado);
+            txtNome.setText(motivo != null && !motivo.trim().isEmpty() ? motivo : getString(R.string.liberacao_manual));
+            txtSub.setText(operador != null && !operador.trim().isEmpty()
+                    ? getString(R.string.liberado_por, operador)
+                    : getString(R.string.liberado_sub));
+        } else if (autorizado) {
             fundo.setBackgroundColor(ContextCompat.getColor(this, R.color.totem_success));
             imgIcone.setImageResource(R.drawable.ic_check);
             txtStatus.setText(R.string.liberado);
@@ -71,6 +87,11 @@ public class ResultadoActivity extends TotemActivity {
         // Decisão de hardware pendente; ver README.
 
         handler.postDelayed(this::finish, TEMPO_NA_TELA_MS);
+    }
+
+    @Override
+    protected boolean consultaLiberacaoManual() {
+        return false;
     }
 
     private void tocarAviso(boolean autorizado) {

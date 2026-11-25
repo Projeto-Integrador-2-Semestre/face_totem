@@ -14,16 +14,44 @@ import androidx.core.view.WindowInsetsControllerCompat;
  */
 public abstract class TotemActivity extends AppCompatActivity {
 
+    private LiberacaoRemota liberacaoRemota;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        liberacaoRemota = new LiberacaoRemota(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         esconderBarras();
+        if (consultaLiberacaoManual()) {
+            liberacaoRemota.iniciar();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        liberacaoRemota.parar();
+    }
+
+    /**
+     * Se esta tela fica de olho nas liberações manuais feitas pelo painel web.
+     * A tela de resultado desliga (já está mostrando um resultado).
+     */
+    protected boolean consultaLiberacaoManual() {
+        return true;
+    }
+
+    /** Reinicia a consulta (ex.: depois de salvar a configuração). */
+    protected void reiniciarLiberacaoManual() {
+        liberacaoRemota.parar();
+        if (consultaLiberacaoManual()) {
+            liberacaoRemota.iniciar();
+        }
     }
 
     @Override

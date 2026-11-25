@@ -92,7 +92,8 @@ public class MainActivity extends TotemActivity {
     private boolean precisaPedirRedeLocal() {
         // A permissão só existe a partir do Android 16 (API 36).
         if (Build.VERSION.SDK_INT < 36) return false;
-        if (!Config.isUrlRedeLocal(Config.getBaseUrl(this))) return false;
+        if (!Config.isUrlRedeLocal(Config.getBaseUrl(this))
+                && !Config.isUrlRedeLocal(Config.getUrlGestao(this))) return false;
         return ContextCompat.checkSelfPermission(this, PERM_REDE_LOCAL) != PackageManager.PERMISSION_GRANTED;
     }
 
@@ -134,8 +135,13 @@ public class MainActivity extends TotemActivity {
         View conteudo = getLayoutInflater().inflate(R.layout.dialog_config, null);
         EditText edtUrl = conteudo.findViewById(R.id.edtUrl);
         CheckBox chkLauncher = conteudo.findViewById(R.id.chkLauncher);
+        EditText edtUrlGestao = conteudo.findViewById(R.id.edtUrlGestao);
+        EditText edtCatracaId = conteudo.findViewById(R.id.edtCatracaId);
 
         edtUrl.setText(Config.getBaseUrl(this));
+        edtUrlGestao.setText(Config.getUrlGestao(this));
+        long catracaId = Config.getCatracaId(this);
+        edtCatracaId.setText(catracaId > 0 ? String.valueOf(catracaId) : "");
         chkLauncher.setChecked(Config.isLauncherAtivo(this));
 
         new AlertDialog.Builder(this)
@@ -145,6 +151,9 @@ public class MainActivity extends TotemActivity {
                 .setPositiveButton(R.string.salvar, (d, w) -> {
                     Config.setBaseUrl(this, edtUrl.getText().toString());
                     Config.setLauncherAtivo(this, chkLauncher.isChecked());
+                    Config.setUrlGestao(this, edtUrlGestao.getText().toString());
+                    Config.setCatracaId(this, edtCatracaId.getText().toString());
+                    reiniciarLiberacaoManual();
                     Toast.makeText(this, R.string.config_salva, Toast.LENGTH_SHORT).show();
                     verificarApi();
                 })
