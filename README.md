@@ -92,6 +92,9 @@ Quando o operador bloqueia uma pessoa no painel, a face_api continua reconhecend
 `motivo: "pessoa_bloqueada"`. O totem mostra a tela vermelha **BLOQUEADO** com o nome da pessoa e
 "Seu acesso está bloqueado. Procure a recepção.", e nenhuma passagem é registrada.
 
+Com o **bloqueio geral** de emergência ativado no painel (tela de Monitoramento), a face_api responde
+`motivo: "bloqueio_geral"` para qualquer rosto, e o totem mostra **BLOQUEADO** com "Bloqueio geral ativo".
+
 ## Pendências de hardware
 
 - **Acionamento físico da catraca**: o app só mostra o resultado. O ponto para integrar está
