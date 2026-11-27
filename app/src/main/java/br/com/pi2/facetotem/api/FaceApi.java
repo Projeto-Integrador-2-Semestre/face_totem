@@ -1,6 +1,7 @@
 package br.com.pi2.facetotem.api;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
@@ -17,8 +18,11 @@ public interface FaceApi {
 
     /**
      * Envia uma imagem (multipart, campo "file") e recebe o resultado do reconhecimento.
+     * catracaId vai para o log de entrada/saída (o painel mostra em qual catraca a pessoa passou);
+     * null quando o ID da catraca não foi configurado (o Retrofit omite a parte).
      */
     @Multipart
     @POST("faces/recognize")
-    Call<ReconhecimentoResponse> recognize(@Part MultipartBody.Part file);
+    Call<ReconhecimentoResponse> recognize(@Part MultipartBody.Part file,
+                                           @Part("catraca_id") RequestBody catracaId);
 }

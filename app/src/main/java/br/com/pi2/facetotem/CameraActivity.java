@@ -189,8 +189,14 @@ public class CameraActivity extends TotemActivity {
         // "file" precisa bater com o parâmetro `file: UploadFile` do endpoint.
         MultipartBody.Part parte = MultipartBody.Part.createFormData("file", "frame.jpg", corpo);
 
+        // ID da catraca deste totem (configuração escondida); 0 = não configurado, não envia.
+        long catracaId = Config.getCatracaId(this);
+        RequestBody catraca = catracaId > 0
+                ? RequestBody.create(String.valueOf(catracaId), MediaType.get("text/plain"))
+                : null;
+
         // enqueue: roda em background e chama os callbacks na thread principal.
-        ApiClient.get(this).recognize(parte).enqueue(new Callback<ReconhecimentoResponse>() {
+        ApiClient.get(this).recognize(parte, catraca).enqueue(new Callback<ReconhecimentoResponse>() {
             @Override
             public void onResponse(Call<ReconhecimentoResponse> call, Response<ReconhecimentoResponse> response) {
                 emVoo = false;
@@ -219,7 +225,7 @@ public class CameraActivity extends TotemActivity {
                 + " nome=" + r.nome + " sim=" + r.similaridade + " tempo=" + r.tempoMs + "ms");
 
         if (r.isDecisivo()) {
-            mostrarResultado(r.autorizado, r.nome);
+            mostrarResultado(r.autorizado, r.nome, r.isBloqueada());
             return;
         }
 
@@ -231,13 +237,14 @@ public class CameraActivity extends TotemActivity {
         }
     }
 
-    private void mostrarResultado(boolean autorizado, String nome) {
+    private void mostrarResultado(boolean autorizado, String nome, boolean bloqueada) {
         finalizado = true;
         handler.removeCallbacksAndMessages(null);
 
         Intent intent = new Intent(this, ResultadoActivity.class);
         intent.putExtra(ResultadoActivity.EXTRA_AUTORIZADO, autorizado);
         intent.putExtra(ResultadoActivity.EXTRA_NOME, nome);
+        intent.putExtra(ResultadoActivity.EXTRA_BLOQUEADA, bloqueada);
         startActivity(intent);
         finish(); // sai da pilha: quando o resultado fechar, volta direto para a MainActivity
     }

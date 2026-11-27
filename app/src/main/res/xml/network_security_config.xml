@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Build de produção (release): só HTTPS, exceto endereços locais de desenvolvimento.
+    A face_api e a API de gestão no Render já usam HTTPS.
+    Para usar uma API no PC pelo IP da rede (http://192.168.x.x), instale o build de debug
+    (Run do Android Studio), que libera HTTP em src/debug/res/xml/network_security_config.xml,
+    ou acrescente o IP abaixo.
+-->
 <network-security-config>
-    <base-config cleartextTrafficPermitted="true" />
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- adb reverse (tablet no USB) -->
+        <domain includeSubdomains="false">127.0.0.1</domain>
+        <domain includeSubdomains="false">localhost</domain>
+        <!-- localhost do PC visto de dentro do emulador -->
+        <domain includeSubdomains="false">10.0.2.2</domain>
+    </domain-config>
 </network-security-config>

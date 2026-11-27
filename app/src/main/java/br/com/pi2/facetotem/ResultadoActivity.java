@@ -27,6 +27,8 @@ public class ResultadoActivity extends TotemActivity {
     public static final String EXTRA_MANUAL = "manual";
     public static final String EXTRA_OPERADOR = "operador";
     public static final String EXTRA_MOTIVO = "motivo";
+    /** Reconhecida, mas com o acesso bloqueado no painel (motivo "pessoa_bloqueada" da face_api). */
+    public static final String EXTRA_BLOQUEADA = "bloqueada";
 
     private static final long TEMPO_NA_TELA_MS = 5000;
 
@@ -67,6 +69,12 @@ public class ResultadoActivity extends TotemActivity {
             txtStatus.setText(R.string.liberado);
             txtNome.setText(nome != null ? nome : "");
             txtSub.setText(R.string.liberado_sub);
+        } else if (getIntent().getBooleanExtra(EXTRA_BLOQUEADA, false)) {
+            fundo.setBackgroundColor(ContextCompat.getColor(this, R.color.totem_danger));
+            imgIcone.setImageResource(R.drawable.ic_close);
+            txtStatus.setText(R.string.bloqueado);
+            txtNome.setText(nome != null ? nome : "");
+            txtSub.setText(R.string.bloqueado_sub);
         } else {
             fundo.setBackgroundColor(ContextCompat.getColor(this, R.color.totem_danger));
             imgIcone.setImageResource(R.drawable.ic_close);

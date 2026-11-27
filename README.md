@@ -79,9 +79,18 @@ O botão **Liberar Catraca** do painel web (front-end) pede a liberação de uma
 - **URL da API de gestão** – ex.: `http://192.168.0.10:8080/` (ou `http://10.0.2.2:8080/` no emulador);
 - **ID da catraca deste totem** – o `id` da catraca em `GET /catracas` (ex.: `1`).
 
+O ID da catraca também vai junto de cada foto enviada para a face_api (`catraca_id`), e o painel de logs passa a
+mostrar em qual catraca a pessoa passou. Sem ID configurado, os logs aparecem como "Totem de Reconhecimento Facial".
+
 Com os dois preenchidos, as telas inicial e de câmera consultam `POST /catracas/{id}/liberacao/confirmar` a
 cada 1,5 s (`LiberacaoRemota`). Quando há uma liberação, abre a tela verde **ACESSO LIBERADO** com o motivo e o
 nome do operador. Deixe os campos em branco para desligar.
+
+## Pessoa bloqueada
+
+Quando o operador bloqueia uma pessoa no painel, a face_api continua reconhecendo o rosto, mas responde
+`motivo: "pessoa_bloqueada"`. O totem mostra a tela vermelha **BLOQUEADO** com o nome da pessoa e
+"Seu acesso está bloqueado. Procure a recepção.", e nenhuma passagem é registrada.
 
 ## Pendências de hardware
 
@@ -93,7 +102,10 @@ nome do operador. Deixe os campos em branco para desligar.
 
 ## Observações técnicas
 
-- `http://` sem TLS é liberado por `res/xml/network_security_config.xml`. Em produção, restrinja
-  ao host da API com `<domain-config>`.
+- HTTP sem TLS: o build de **release** só aceita HTTPS (as APIs no Render), com exceção de `127.0.0.1`,
+  `localhost` e `10.0.2.2` (`src/main/res/xml/network_security_config.xml`). O build de **debug** (Run do
+  Android Studio) libera HTTP para qualquer endereço (`src/debug/res/xml/network_security_config.xml`), para
+  testar com a API no PC pelo IP da rede. Para usar um IP local num build de release, acrescente-o no
+  `<domain-config>` do arquivo de `main`.
 - `gradle/gradle-daemon-jvm.properties` fixa o JDK do build no JetBrains Runtime embutido no
   Android Studio (`toolchainVendor=JETBRAINS`), evitando que um JRE sem `jlink` seja escolhido.
