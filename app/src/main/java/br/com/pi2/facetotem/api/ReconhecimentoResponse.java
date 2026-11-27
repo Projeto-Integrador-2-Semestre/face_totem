@@ -14,6 +14,8 @@ public class ReconhecimentoResponse {
     public static final String MOTIVO_NAO_RECONHECIDO = "nao_reconhecido";
     /** Reconheceu, mas o acesso da pessoa foi bloqueado no painel. */
     public static final String MOTIVO_PESSOA_BLOQUEADA = "pessoa_bloqueada";
+    /** Bloqueio geral de emergência ativado no painel: ninguém passa. */
+    public static final String MOTIVO_BLOQUEIO_GERAL = "bloqueio_geral";
 
     @SerializedName("autorizado")
     public boolean autorizado;
@@ -57,10 +59,14 @@ public class ReconhecimentoResponse {
     public boolean isDecisivo() {
         if (autorizado) return true;
         return MOTIVO_NAO_RECONHECIDO.equals(motivo) || MOTIVO_ROSTO_NAO_VIVO.equals(motivo)
-                || MOTIVO_PESSOA_BLOQUEADA.equals(motivo);
+                || MOTIVO_PESSOA_BLOQUEADA.equals(motivo) || MOTIVO_BLOQUEIO_GERAL.equals(motivo);
     }
 
     public boolean isBloqueada() {
         return !autorizado && MOTIVO_PESSOA_BLOQUEADA.equals(motivo);
+    }
+
+    public boolean isBloqueioGeral() {
+        return !autorizado && MOTIVO_BLOQUEIO_GERAL.equals(motivo);
     }
 }

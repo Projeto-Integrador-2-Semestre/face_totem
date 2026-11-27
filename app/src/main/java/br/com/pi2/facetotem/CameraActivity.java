@@ -225,7 +225,7 @@ public class CameraActivity extends TotemActivity {
                 + " nome=" + r.nome + " sim=" + r.similaridade + " tempo=" + r.tempoMs + "ms");
 
         if (r.isDecisivo()) {
-            mostrarResultado(r.autorizado, r.nome, r.isBloqueada());
+            mostrarResultado(r.autorizado, r.nome, r.isBloqueada(), r.isBloqueioGeral());
             return;
         }
 
@@ -237,7 +237,7 @@ public class CameraActivity extends TotemActivity {
         }
     }
 
-    private void mostrarResultado(boolean autorizado, String nome, boolean bloqueada) {
+    private void mostrarResultado(boolean autorizado, String nome, boolean bloqueada, boolean bloqueioGeral) {
         finalizado = true;
         handler.removeCallbacksAndMessages(null);
 
@@ -245,6 +245,7 @@ public class CameraActivity extends TotemActivity {
         intent.putExtra(ResultadoActivity.EXTRA_AUTORIZADO, autorizado);
         intent.putExtra(ResultadoActivity.EXTRA_NOME, nome);
         intent.putExtra(ResultadoActivity.EXTRA_BLOQUEADA, bloqueada);
+        intent.putExtra(ResultadoActivity.EXTRA_BLOQUEIO_GERAL, bloqueioGeral);
         startActivity(intent);
         finish(); // sai da pilha: quando o resultado fechar, volta direto para a MainActivity
     }

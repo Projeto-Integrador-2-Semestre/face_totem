@@ -25,6 +25,8 @@
     <string name="negado_sub">Acesso não autorizado. Procure a recepção.</string>
     <string name="bloqueado">BLOQUEADO</string>
     <string name="bloqueado_sub">Seu acesso está bloqueado. Procure a recepção.</string>
+    <string name="bloqueio_geral">Bloqueio geral ativo</string>
+    <string name="bloqueio_geral_sub">Acesso suspenso temporariamente. Procure a recepção.</string>
     <string name="acesso_liberado">ACESSO LIBERADO</string>
     <string name="liberacao_manual">Liberação manual</string>
     <string name="liberado_por">Liberado por %1$s. Pode passar.</string>
